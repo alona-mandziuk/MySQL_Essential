@@ -11,7 +11,7 @@ on Orders.CustomerNo = Customers.CustomerNo
  join OrderDetails 
 on Orders.OrderID =  OrderDetails.OrderID
 group by  Employees.FName,
-	  Employees.LName,
+		  Employees.LName,
           Customers.FName,
           Customers.LName
 having SUM(TotalPrice) > 1000;
