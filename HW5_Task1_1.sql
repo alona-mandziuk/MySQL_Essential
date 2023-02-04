@@ -60,4 +60,4 @@ values
 
 select * from Personnel; 
 select * from Salary;
-select * from Another_Info;
+select * from Another_Info; 
