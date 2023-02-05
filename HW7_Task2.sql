@@ -50,8 +50,6 @@ end
 |
 
 
-drop function get_yangest_client ();
-
 delimiter |
 select get_yangest_client ();
 |
