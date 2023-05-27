@@ -1,5 +1,13 @@
 use HRDepartment;
 
+drop table Personal_Info;
+drop table Contract_number;
+drop table Position;
+drop table Salary_info;
+drop table Vocation;
+drop table Marital_Status;
+drop table Previouse_expirience;
+
 insert into Personal_Info 
 (name, surname, birthDate, ITN, passport_number, phone_number, adress)
 values
@@ -41,24 +49,24 @@ values
 (18000, 27);
 
 insert into Vocation
-(accrued_since_start, taken_since_start, taken_this_year, availiable, planned_vocation)
+(taken_since_start, taken_this_year, planned_vocation)
 values
-(55, 35, 0, 20, '2023-07-10');
+(35, 0, '2023-07-10');
 
 insert into Vocation
-(accrued_since_start, taken_since_start, taken_this_year, availiable, planned_vocation)
+(taken_since_start, taken_this_year, planned_vocation)
 values
-(5, 0, 0, 5, '2023-08-01');
+(0, 0, '2023-08-01');
 
 insert into Marital_Status 
 (marital_status, kids_before_18, kids_name, kids_birthdate)
 values
-('merried', 1, 'Ben Stihl', '2017-03-23');
+(1, 1, 'Ben Stihl', '2017-03-23');
 
 insert into Marital_Status 
 (marital_status)
 values
-('merried');
+(1);
 
 insert into Previouse_expirience 
 (education1)
@@ -85,7 +93,7 @@ select * from Contract_number
 where rollNumber = 2;
 
 select * from Marital_Status
-where Marital_Status = 'merried';
+where Marital_Status = 1;
 
 
 

@@ -2,6 +2,7 @@
 
 create database HRDepartment;
 use HRDepartment;
+drop database HRDepartment;
 
 create table Personal_Info (
 rollNumber int not null auto_increment unique primary key,
@@ -27,8 +28,7 @@ rollNumber int not null auto_increment unique primary key,
 foreign key (rollNumber) references Personal_Info (rollNumber),
 department varchar (30),
 position varchar (30),
-position_date date,
-this_company_exp int
+position_date date
 );
 
 create table Salary_info (
@@ -41,7 +41,6 @@ premium_percent int
 create table Vocation (
 rollNumber int not null auto_increment unique primary key,
 foreign key (rollNumber) references Personal_Info (rollNumber),
-accrued_since_start int,
 taken_since_start int,
 taken_this_year int,
 availiable int,
@@ -51,7 +50,7 @@ planned_vocation varchar (20)
 
 create table Marital_Status (
 rollNumber int not null auto_increment unique primary key,
-marital_status varchar (20),
+marital_status boolean,
 kids_before_18 int default 0,
 kids_name varchar (20),
 kids_birthdate date,
