@@ -2,7 +2,7 @@
 
 create database MyJoinsDB;
 use MyJoinsDB;
-
+drop database MyJoinsDB;
 /*В даній БД створіть 3 таблиці:
 в 1-й містяться імена та номера телефонів працівників компанії;
 в 2-й - відомості про зарплату та посади: головний директор, менеджер, робочий;
@@ -26,7 +26,7 @@ create table Another_Info (
 id int auto_increment not null primary key,
 foreign key (id) references Personnel (pers_ID),
 birthdate date,
-marital_status varchar (20),
+marital_status boolean,
 city varchar (30),
 adress varchar (50)
 );
@@ -52,11 +52,11 @@ values
 insert Another_Info 
 (birthdate, marital_status, city, adress)
 values
-('1982-04-01', 'married', 'Chicago', 'Evergreen Terrace 20156'),
-('1990-07-28', 'unmarried', 'Michigan City', 'Cherry Street 456/20'),
-('1979-10-12', 'married', 'Chicago', 'Michigan Avenue 4548/265'),
-('1987-05-11', 'unmarried', 'Chicago', 'Clark Street 547/789'),
-('1989-12-23', 'married', 'Chicago', 'State Street 1005/12');
+('1982-04-01', 1, 'Chicago', 'Evergreen Terrace 20156'),
+('1990-07-28', 0, 'Michigan City', 'Cherry Street 456/20'),
+('1979-10-12', 1, 'Chicago', 'Michigan Avenue 4548/265'),
+('1987-05-11', 0, 'Chicago', 'Clark Street 547/789'),
+('1989-12-23', 1, 'Chicago', 'State Street 1005/12');
 
 select * from Personnel; 
 select * from Salary;

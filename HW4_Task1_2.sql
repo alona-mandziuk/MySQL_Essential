@@ -14,7 +14,7 @@ Another_Info.birthdate
 from Personnel
 join Another_Info
 on Personnel.pers_ID = Another_Info.id
-where Another_info.marital_status = 'unmarried';
+where Another_info.marital_status = 0;
 
 select Personnel.pers_ID, Personnel.name, Personnel.surname, Personnel.phone, Another_Info.birthdate from Personnel
 join Another_Info
