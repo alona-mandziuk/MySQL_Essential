@@ -5,11 +5,11 @@ use ShopDB;
 create temporary table TmpTable
 select (select FName from Employees where EmployeeID = 
 			(select EmployeeID from Orders where Orders.OrderID = OrderDetails.OrderID)) as EmployeeFName,
-	(select LName from Employees where EmployeeID = 
+	   (select LName from Employees where EmployeeID = 
 			(select EmployeeID from Orders where Orders.OrderID = OrderDetails.OrderID)) as EmployeeLName,
-	(select FName from Customers where CustomerNo = 
+		(select FName from Customers where CustomerNo = 
 			(select CustomerNo from Orders where Orders.OrderID = OrderDetails.OrderID)) as CustomersFName,
-	(select LName from Customers where CustomerNo = 
+	    (select LName from Customers where CustomerNo = 
 			(select CustomerNo from Orders where Orders.OrderID = OrderDetails.OrderID)) as CustomersLName,
 		TotalPrice FROM OrderDetails;
 

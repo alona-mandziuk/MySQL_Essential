@@ -11,10 +11,10 @@ select phone,
  
  select birthdate, 
  (select phone from Personnel where Personnel.pers_ID = Another_Info.id) as phone
- from Another_Info where marital_status = 'unmarried';
+ from Another_Info where marital_status = 0;
  
  select birthdate, 
  (select phone from Personnel where Personnel.pers_ID = Another_Info.id) as phone
  from Another_Info 
  where 
- (select id from Salary where Another_Info.id = Salary.id and position = 'Manager');  
+ (select id from Salary where Another_Info.id = Salary.id and position = 'Manager'); 
