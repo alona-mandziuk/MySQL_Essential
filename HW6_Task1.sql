@@ -29,7 +29,7 @@ create index Salary on Salary (position); -- створення некласте
 Створіть представлення таких завдань:
 1) необхідно дізнатись контактні дані працівників: номера телефонів, місце проживання.
 2) необхідно дізнатись інформацію про дату народження всіх неодружених працівників та їх номера телефонів.
-3) необхідно дізнатисьь інформацію про дату народження всіх працівників з посадою менеджер та номера телефонів.
+3) необхідно дізнатись інформацію про дату народження всіх працівників з посадою менеджер та номера телефонів.
 */
 
 create view phone_and_adress as
@@ -43,7 +43,7 @@ select phone,
  create view birthday_phone_of_unmarried as
  select birthdate, 
  (select phone from Personnel where Personnel.pers_ID = Another_Info.id) as phone
- from Another_Info where marital_status = 'unmarried';
+ from Another_Info where marital_status = 0;
  
  select * from birthday_phone_of_unmarried;
  

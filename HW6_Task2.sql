@@ -51,4 +51,9 @@ create index AnotherCustomers on
 AnotherCustomers (CustomerNo);
 
 create index Customers on
-Customers (city);
+Customers (city); -- Допомагає швидше знайти дані по запиту "city", 
+					-- порівняно з попереднім разом без наявного індексу на дане поле.
+
+explain select * from Customers;
+explain select CustomerName, Address, City, Phone from Customers;
+explain select CustomerName from Customers where city = 'BikiniButtomn';
