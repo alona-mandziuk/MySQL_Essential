@@ -1,9 +1,9 @@
-/*Створіть БВ з іменем "MyFunkDB"
+/*Створіть БД з іменем "MyFunkDB"
 В даній БД створіть 3 таблиці:
 в 1-й містяться імена та номера телефонів працівників компанії;
 в 2-й - відомості про зарплату та посади: головний директор, менеджер, робочий;
 в 3-й - інформація про сімейне положення, дату народження та місце проживання.
-Виконайте ряд записів вставки в вигляді транзакцій в процедурі. Якщо такий працівник існує, відкотіть БВ назад.
+Виконайте ряд записів вставки в вигляді транзакцій в процедурі. Якщо такий працівник існує, відкотіть БД назад.
 Створіть тригер, який буде видаляти записи з 2-ї та 3-ї таблиці перед видаленням записів із 1-ї таблиці, щоб не порушити цілісність даних.*/
 
 
@@ -33,13 +33,13 @@ create table if not exists Another_Info (
 id int not null primary key,
 foreign key (id) references Personnel (pers_ID),
 birthdate date,
-marital_status varchar (20),
+marital_status boolean,
 city varchar (30),
 adress varchar (50)
 );
 
 
-/*Виконайте ряд записів вставки в вигляді транзакцій в процедурі. Якщо такий працівник існує, відкотіть БВ назад.*/
+/*Виконайте ряд записів вставки в вигляді транзакцій в процедурі. Якщо такий працівник існує, відкотіть БД назад.*/
 
 
 delimiter |
@@ -61,9 +61,12 @@ start transaction;
  end;
  |
 
-call insert_the_person ('Homer', 'Simpsonson', '+111115555599', 'worker', 20000, '1975-08-01', 'married', 'Springfiel-city', 'Evergreen Terrase 5656');
-call insert_the_person ('Bart', 'Simpsonson', '+113455555599', 'worker', 24000, '1975-08-01', 'married', 'Springfiel-city', 'Evergreen Terrase 5656');
-call insert_the_person ('Patric', 'Star', '+8888888', 'Manager', 80000, '2000-09-30', 'unmarried', 'BikiniButtumn', 'Rock');
+|
+call insert_the_person ('Homer', 'Simpsonson', '+111115555599', 'worker', 20000, '1975-08-01', 1, 'Springfiel-city', 'Evergreen Terrase 5656');|
+|
+call insert_the_person ('Bart', 'Simpsonson', '+113455555599', 'worker', 24000, '1975-08-01', 1, 'Springfiel-city', 'Evergreen Terrase 5656');|
+|
+call insert_the_person ('Patric', 'Star', '+8888888', 'Manager', 80000, '2000-09-30', 0, 'BikiniButtumn', 'Rock');|
 
 
 /*Створіть тригер, який буде видаляти записи з 2-ї та 3-ї таблиці перед видаленням записів із 1-ї таблиці, щоб не порушити цілісність даних.*/
@@ -79,9 +82,12 @@ delete from Salary where id = OLD.pers_ID;
 delete from Another_Info where id = OLD.pers_ID;
 end;
 |
+|
+delete from Personnel where name = 'Homer';|
 
-delete from Personnel where name = 'Homer';
-
-select * from Personnel; 
-select * from Salary;
-select * from Another_Info;
+|
+select * from Personnel; |
+|
+select * from Salary;|
+|
+select * from Another_Info;|
