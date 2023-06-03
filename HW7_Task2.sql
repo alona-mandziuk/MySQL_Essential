@@ -1,6 +1,7 @@
 /*Використовуючи БД carsshop створіть функцію для знаходження мінімального віку клієнта,
 потім зробіть виборку всіз машин, які він придбав.*/
 
+drop database carsshop;
 create database carsshop;
 use carsshop;
 
@@ -21,6 +22,8 @@ model varchar(20),
 speed int,
 price int
 );
+
+create index cars on cars (mark);
 
 insert into clients					
 (firstname, lastname, age, phone)
@@ -50,11 +53,14 @@ end
 |
 
 
+drop function get_yangest_client ();
+
 delimiter |
 select get_yangest_client ();
 |
 
-select mark, model, clients.id as clientID from cars join clients
+select mark, model, clients.id as clientID from cars 
+join clients
 on cars.client_id = clients.id
 where clients.age = get_yangest_client ();
 

@@ -1,5 +1,5 @@
 /*Створіть БВ з іменем "MyFunkDB"*/
-
+drop database MyFunkDB;
 create database MyFunkDB;
 use MyFunkDB;
 
@@ -19,7 +19,8 @@ surname varchar (30) not null,
 phone varchar (13)
 );
 
-create index Personnel on Personnel (pers_ID);
+create index Personnel on Personnel (pers_ID); -- Індекс можна і не створювати, 
+												-- оскільки був створений ключ, який автоматично і стає індексом.
 
 create table Salary (
 id int auto_increment not null primary key,
@@ -32,7 +33,7 @@ create table Another_Info (
 id int auto_increment not null primary key,
 foreign key (id) references Personnel (pers_ID),
 birthdate date,
-marital_status varchar (20),
+marital_status boolean,
 city varchar (30),
 adress varchar (50)
 );
@@ -58,11 +59,11 @@ values
 insert Another_Info 
 (birthdate, marital_status, city, adress)
 values
-('1982-04-01', 'married', 'New York', 'Evergreen Terrace 20156'),
-('1990-07-28', 'unmarried', 'Central City', 'FlashLight Street 456/20'),
-('1000-10-12', 'married', 'Valhalla', 'Gods Avenue 4548/265'),
-('1880-05-11', 'unmarried', 'Themeskira', 'ClarkKent Street 547/789'),
-('1970-12-23', 'married', 'New York', 'State Street 1005/12');
+('1982-04-01', 1, 'New York', 'Evergreen Terrace 20156'),
+('1990-07-28', 0, 'Central City', 'FlashLight Street 456/20'),
+('1000-10-12', 1, 'Valhalla', 'Gods Avenue 4548/265'),
+('1880-05-11', 0, 'Themeskira', 'ClarkKent Street 547/789'),
+('1970-12-23', 1, 'New York', 'State Street 1005/12');
 
 select * from Personnel; 
 select * from Salary;
